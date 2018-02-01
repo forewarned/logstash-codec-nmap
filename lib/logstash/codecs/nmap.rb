@@ -137,7 +137,7 @@ class LogStash::Codecs::Nmap < LogStash::Codecs::Base
     h['ipv6'] = host.ipv6 # str
     h['mac'] = host.mac # str
     h['status'] = hashify_status(host.status)
-    h['hostname'] = hashify_hostname(host.hostname)
+    h['hostname'] = hashify_hostname(host.hostnames.hostname)
     h['uptime'] = hashify_uptime(host.uptime)
     h['os'] = hashify_os(host.os)
 
@@ -163,8 +163,8 @@ class LogStash::Codecs::Nmap < LogStash::Codecs::Base
     return unless hostname
 
     {
-      'name' => hostname.name, # str
-      'type' => hostname.type, # str
+      'name' => hostnames.hostname.name, # str
+      'type' => hostnames.hostname.type, # str
     }
   end
 
